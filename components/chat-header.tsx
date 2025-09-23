@@ -59,12 +59,12 @@ function PureChatHeader({
         asChild
       >
         <Link
-          href={`https://vercel.com/templates/next.js/nextjs-ai-chatbot`}
+          href={`https://hi.uyghur.institute`}
           target="_noblank"
           rel="noreferrer"
         >
           <VercelIcon size={16} />
-          Deploy with Vercel
+          Hello World!
         </Link>
       </Button>
     </header>
