@@ -64,7 +64,7 @@ function PureChatHeader({
           rel="noreferrer"
         >
           <VercelIcon size={16} />
-          Hello World!
+          Hello World !
         </Link>
       </Button>
     </header>
