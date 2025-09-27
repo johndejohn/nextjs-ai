@@ -6,7 +6,6 @@ import type { User } from 'next-auth';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
-import { Link } from 'next/link';
 import {
   AlertDialog,
   AlertDialogAction,
