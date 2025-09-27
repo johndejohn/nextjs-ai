@@ -6,6 +6,7 @@ import type { User } from 'next-auth';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
+import {Link} from 'next/link';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -194,7 +195,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
       <SidebarGroup>
         <SidebarGroupContent>
           <div className="flex w-full flex-row items-center justify-center gap-2 px-2 text-sm text-zinc-500">
-            Powered by <a href="https://mayday.id"> target="_blank"> Mayday</a>
+            Powered by <Link href="https://myday.id"> Mayday</Link>
             <br/>
             Your conversations will appear here once you start chatting!
           </div>
