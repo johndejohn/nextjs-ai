@@ -194,7 +194,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
       <SidebarGroup>
         <SidebarGroupContent>
           <div className="flex w-full flex-row items-center justify-center gap-2 px-2 text-sm text-zinc-500">
-            <br>Powered by <a href='https://mayday.id'> Mayday</a> <br />
+            Powered by <a href="https://mayday.id"> Mayday</a> <\n>
             <br/>
             Your conversations will appear here once you start chatting!
           </div>
