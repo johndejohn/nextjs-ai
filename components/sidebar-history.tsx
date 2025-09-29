@@ -199,9 +199,8 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
           href={`https://mayday.id`}
           target="_noblank"
           rel="noreferrer"
-         >Powered by Mayday</Link> <br/>
-            <br/>
-            Your conversations will appear here once you start chatting!
+         >Powered by Mayday</Link> {'\n'}
+          Your conversations will appear here once you start chatting!
           </div>
         </SidebarGroupContent>
       </SidebarGroup>
