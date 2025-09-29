@@ -1,6 +1,6 @@
 'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
 import { isToday, isYesterday, subMonths, subWeeks } from 'date-fns';
 import { useParams, useRouter } from 'next/navigation';
 import type { User } from 'next-auth';
@@ -195,7 +195,11 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
       <SidebarGroup>
         <SidebarGroupContent>
           <div className="flex w-full flex-row items-center justify-center gap-2 px-2 text-sm text-zinc-500">
-            Powered by Mayday <br/>
+           Powered by <Link
+          href={`https://mayday.id`}
+          target="_noblank"
+          rel="noreferrer"
+         > Mayday</Link> <br/>
             <br/>
             Your conversations will appear here once you start chatting!
           </div>
