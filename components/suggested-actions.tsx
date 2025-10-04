@@ -56,7 +56,7 @@ function PureSuggestedActions({
     </div>
   );
 }
-<elevenlabs-convai agent-id="agent_7601k6c1v7d9f8haq94x86sgyjna"></elevenlabs-convai><script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+
 export const SuggestedActions = memo(
   PureSuggestedActions,
   (prevProps, nextProps) => {
