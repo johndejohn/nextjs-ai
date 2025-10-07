@@ -9,6 +9,16 @@ export interface ChatModel {
 export const chatModels: Array<ChatModel> = [
   {
     id: 'chat-model',
+    name: 'Qwen',
+    description: 'Advanced multimodal model with vision and text capabilities',
+  },
+  {
+    id: 'chat-model',
+    name: 'Gemini',
+    description: 'Advanced multimodal model with vision and text capabilities',
+  },
+  {
+    id: 'chat-model',
     name: 'Grok Vision',
     description: 'Advanced multimodal model with vision and text capabilities',
   },
