@@ -30,7 +30,7 @@ export const myProvider = isTestEnvironment
         'chat-model-reasoning': wrapLanguageModel({
           model: gateway.languageModel('groq/compound'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
-
+        }),
         'chat-model': groq.languageModel('groq/compound'),
         'chat-model-reasoning': wrapLanguageModel({
           model: groq.languageModel('groq/compound'),
