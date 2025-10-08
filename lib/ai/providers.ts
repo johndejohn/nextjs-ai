@@ -4,6 +4,7 @@ import {
   wrapLanguageModel,
 } from 'ai';
 import { gateway } from '@ai-sdk/gateway';
+import { groq } from '@ai-sdk/groq';
 import { isTestEnvironment } from '../constants';
 
 export const myProvider = isTestEnvironment
@@ -28,6 +29,11 @@ export const myProvider = isTestEnvironment
         'chat-model': gateway.languageModel('groq/compound'),
         'chat-model-reasoning': wrapLanguageModel({
           model: gateway.languageModel('groq/compound'),
+          middleware: extractReasoningMiddleware({ tagName: 'think' }),
+
+        'chat-model': groq.languageModel('groq/compound'),
+        'chat-model-reasoning': wrapLanguageModel({
+          model: groq.languageModel('groq/compound'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
         'title-model': gateway.languageModel('xai/grok-2-1212'),
