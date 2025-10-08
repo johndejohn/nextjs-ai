@@ -4,7 +4,6 @@ import {
   wrapLanguageModel,
 } from 'ai';
 import { gateway } from '@ai-sdk/gateway';
-import Groq from "groq-sdk";
 import { isTestEnvironment } from '../constants';
 
 export const myProvider = isTestEnvironment
@@ -26,17 +25,12 @@ export const myProvider = isTestEnvironment
     })()
   : customProvider({
       languageModels: {
-        'chat-model': gateway.languageModel('groq/compound'),
+        'chat-model': gateway.languageModel('groq/llama-3.1-8b-instant'),
         'chat-model-reasoning': wrapLanguageModel({
-          model: gateway.languageModel('groq/compound'),
+          model: gateway.languageModel('groq/llama-3.1-8b-instant'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
-        'chat-model': groq.languageModel('groq/compound'),
-        'chat-model-reasoning': wrapLanguageModel({
-          model: groq.languageModel('groq/compound'),
-          middleware: extractReasoningMiddleware({ tagName: 'think' }),
-        }),
-        'title-model': gateway.languageModel('groq/compound'),
-        'artifact-model': gateway.languageModel('groq/compound'),
+        'title-model': gateway.languageModel('groq/llama-3.1-8b-instant'),
+        'artifact-model': gateway.languageModel('groq/llama-3.1-8b-instant'),
       },
     });
