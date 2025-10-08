@@ -36,7 +36,7 @@ export const myProvider = isTestEnvironment
           model: groq.languageModel('groq/compound'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
-        'title-model': gateway.languageModel('xai/grok-2-1212'),
-        'artifact-model': gateway.languageModel('xai/grok-2-1212'),
+        'title-model': gateway.languageModel('groq/compound'),
+        'artifact-model': gateway.languageModel('groq/compound'),
       },
     });
