@@ -1,4 +1,4 @@
-import { Toaster } from 'sonner';
+timport { Toaster } from 'sonner';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -9,7 +9,7 @@ import { SessionProvider } from 'next-auth/react';
 export const metadata: Metadata = {
   metadataBase: new URL('https://uyghur.institute'),
   title: 'Uyghur Institute AI',
-  description: 'Uyghur Institute chatbot template using the AI SDK.',
+  description: 'Uyghur Institute chatbot template using the Nextjs AI SDK.',
 };
 
 export const viewport = {
