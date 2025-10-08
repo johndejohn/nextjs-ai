@@ -4,7 +4,7 @@ import {
   wrapLanguageModel,
 } from 'ai';
 import { gateway } from '@ai-sdk/gateway';
-import { groq } from '@ai-sdk/groq';
+import Groq from "groq-sdk";
 import { isTestEnvironment } from '../constants';
 
 export const myProvider = isTestEnvironment
