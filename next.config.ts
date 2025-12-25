@@ -1,7 +1,8 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
+  // Disabled cacheComponents because the app uses dynamic data (database, auth, cookies)
+  // which requires dynamic rendering
   images: {
     remotePatterns: [
       {
