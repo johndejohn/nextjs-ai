@@ -8,8 +8,17 @@ config({
 });
 
 const runMigrate = async () => {
-  if (!process.env.POSTGRES_URL) {
+  if (!process.env.POSTGRES_URL || process.env.POSTGRES_URL.trim() === '') {
     console.warn('⚠️ POSTGRES_URL is not defined. Skipping migrations.');
+    console.warn('   Migrations will run automatically on Vercel deployment.');
+    process.exit(0);
+  }
+
+  // Validate POSTGRES_URL format
+  try {
+    new URL(process.env.POSTGRES_URL);
+  } catch (error) {
+    console.warn('⚠️ POSTGRES_URL is invalid. Skipping migrations.');
     console.warn('   Migrations will run automatically on Vercel deployment.');
     process.exit(0);
   }
@@ -28,6 +37,12 @@ const runMigrate = async () => {
 };
 
 runMigrate().catch((err) => {
+  // If it's an invalid URL error, skip migrations gracefully
+  if (err.code === 'ERR_INVALID_URL' || err.message?.includes('Invalid URL')) {
+    console.warn('⚠️ POSTGRES_URL is invalid. Skipping migrations.');
+    console.warn('   Migrations will run automatically on Vercel deployment.');
+    process.exit(0);
+  }
   console.error('❌ Migration failed');
   console.error(err);
   process.exit(1);
