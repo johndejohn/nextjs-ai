@@ -8,6 +8,7 @@ import {
 } from 'ai';
 import { auth, type UserType } from '@/app/(auth)/auth';
 import { type RequestHints, systemPrompt } from '@/lib/ai/prompts';
+import { aiAgentService } from '@/lib/services/ai-agent';
 import {
   createStreamId,
   deleteChatById,
@@ -146,6 +147,27 @@ export async function POST(request: Request) {
     const messagesFromDb = await getMessagesByChatId({ id });
     const uiMessages = [...convertToUIMessages(messagesFromDb), message];
 
+    // Extract user message text for web search analysis
+    const userMessageText = message.parts
+      .filter((part: any) => part.type === 'text')
+      .map((part: any) => part.text)
+      .join(' ');
+
+    // Check if web search is needed
+    let webSearchContext: string = '';
+    if (userMessageText && aiAgentService.shouldUseWebSearch(userMessageText)) {
+      try {
+        const webSearch = await aiAgentService.performWebSearch(userMessageText);
+        if (webSearch) {
+          webSearchContext = aiAgentService.formatWebSearchContext(webSearch);
+          console.log('🔍 Web search performed for:', userMessageText);
+        }
+      } catch (error) {
+        console.error('Web search error:', error);
+        // Continue without web search if it fails
+      }
+    }
+
     const { longitude, latitude, city, country } = geolocation(request);
 
     const requestHints: RequestHints = {
@@ -175,9 +197,18 @@ export async function POST(request: Request) {
 
     const stream = createUIMessageStream({
       execute: ({ writer: dataStream }) => {
+        // Enhanced system prompt with web search context if available
+        let enhancedSystemPrompt = systemPrompt({ selectedChatModel, requestHints });
+        if (webSearchContext) {
+          enhancedSystemPrompt += '\n\n' + webSearchContext;
+        } else {
+          // Add enhanced AI agent prompt even without web search
+          enhancedSystemPrompt += '\n\n' + aiAgentService.getEnhancedSystemPrompt();
+        }
+
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
-          system: systemPrompt({ selectedChatModel, requestHints }),
+          system: enhancedSystemPrompt,
           messages: convertToModelMessages(uiMessages),
           stopWhen: stepCountIs(5),
           experimental_activeTools:
